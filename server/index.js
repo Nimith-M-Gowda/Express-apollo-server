@@ -9,6 +9,7 @@ const { ApolloServer, gql } = require("apollo-server-express");
     }
     type User {
       username: String!
+      age: Int
     }
   `;
 
@@ -17,6 +18,7 @@ const { ApolloServer, gql } = require("apollo-server-express");
       me: () => {
         return {
           username: "Nimith",
+          age: 26,
         };
       },
     },
@@ -26,8 +28,11 @@ const { ApolloServer, gql } = require("apollo-server-express");
     typeDefs: schema,
     resolvers,
   });
+
   await server.start();
+
   server.applyMiddleware({ app, path: "/graphql" });
+
   app.listen({ port: 8000 }, () => {
     console.log("Apollo Server on http://localhost:8000/graphql");
   });
