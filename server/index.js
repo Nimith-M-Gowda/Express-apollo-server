@@ -1,32 +1,66 @@
 const express = require("express");
 const { ApolloServer, gql } = require("apollo-server-express");
+const cors = require("cors");
+
+let users = {
+  1: {
+    id: "1",
+    username: "Nimith",
+  },
+  2: {
+    id: "2",
+    username: "Dave Davids",
+  },
+};
 
 (async () => {
   const app = express();
+
+  // app.use(cors);
+
   const schema = gql`
     type Query {
-      me: User
+      me: User!
+      user(id: ID!): User
+      users: [User!]
     }
     type User {
       username: String!
       age: Int
+      id: ID!
     }
   `;
 
   const resolvers = {
     Query: {
-      me: () => {
-        return {
-          username: "Nimith",
-          age: 26,
-        };
+      me: (parent, args, { me }) => {
+        return me;
+      },
+      user: (parent, { id }) => {
+        return users[id];
+      },
+      users: () => {
+        return Object.values(users);
       },
     },
+    // User: {
+    //   username: (parent) => {
+    //     parent.username = `${parent.username}+rock`;
+    //     return parent.username;
+    //   },
+    // },
   };
 
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
+    context: {
+      me: {
+        id: 1,
+        username: "Nimith M Gowda",
+        age: 24,
+      },
+    },
   });
 
   await server.start();
