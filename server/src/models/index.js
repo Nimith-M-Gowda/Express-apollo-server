@@ -29,4 +29,4 @@ let MESSAGES = {
   },
 };
 
-module.exports = { USERS, MESSAGES };
+module.exports= { USERS, MESSAGES };

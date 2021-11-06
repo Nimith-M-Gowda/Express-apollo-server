@@ -2,15 +2,6 @@ const uuid = require("uuid");
 
 module.exports = {
   Query: {
-    me: (parent, args, { me }) => {
-      return me;
-    },
-    user: (parent, { id }, { USERS }) => {
-      return USERS[id];
-    },
-    users: (parent, args, { USERS }) => {
-      return Object.values(USERS);
-    },
     messages: (parent, args, { MESSAGES }) => {
       return Object.values(MESSAGES);
     },
@@ -23,25 +14,7 @@ module.exports = {
       return USERS[parent.userId];
     },
   },
-  User: {
-    messages: (parent, { id }, { MESSAGES }) => {
-      let resultArray = [];
-      parent.messageId.map((e) => {
-        resultArray.push(MESSAGES[e]);
-      });
-      return resultArray;
-      // return Object.values(messages).filter(
-      //   (eachmessage) => eachmessage.userId === parent.id
-      // );
-    },
-  },
 
-  // User: {
-  //   username: (parent) => {
-  //     parent.username = `${parent.username}+rock`;
-  //     return parent.username;
-  //   },
-  // },
   Mutation: {
     createMessage: (parent, { text }, { me, MESSAGES, USERS }) => {
       const id = uuid.v4();

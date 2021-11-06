@@ -11,9 +11,12 @@
   "devDependencies": {
     "eslint": "^8.1.0",
     "nodemon": "^2.0.14",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon --exec babel-node src/index.js"
   }
 }
