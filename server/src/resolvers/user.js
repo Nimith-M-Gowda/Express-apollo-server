@@ -2,24 +2,24 @@ const uuid = require("uuid");
 
 module.exports = {
   Query: {
-    me: (parent, args, { me }) => {
-      return me;
+    me: async (parent, args, { me, models }) => {
+      return await models.User.findByPk(me.id);
     },
-    user: (parent, { id }, { USERS }) => {
-      return USERS[id];
+    user: async (parent, { id }, { models }) => {
+      return await models.User.findByPk(id);
     },
-    users: (parent, args, { USERS }) => {
-      return Object.values(USERS);
+    users: async (parent, args, { models }) => {
+      return await models.User.findAll();
     },
   },
 
   User: {
-    messages: (parent, { id }, { MESSAGES }) => {
-      let resultArray = [];
-      parent.messageId.map((e) => {
-        resultArray.push(MESSAGES[e]);
+    messages: async (parent, args, { models }) => {
+      return await models.Message.findAll({
+        where: {
+          userId: parent.id,
+        },
       });
-      return resultArray;
       // return Object.values(messages).filter(
       //   (eachmessage) => eachmessage.userId === parent.id
       // );

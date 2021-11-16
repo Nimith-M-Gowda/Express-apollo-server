@@ -2,30 +2,34 @@ const uuid = require("uuid");
 
 module.exports = {
   Query: {
-    messages: (parent, args, { MESSAGES }) => {
-      return Object.values(MESSAGES);
+    messages: async (parent, args, { models }) => {
+      return await models.Message.findAll();
     },
-    message: (parent, { id }, { MESSAGES }) => {
-      return MESSAGES[id];
+    message: async (parent, { id }, { models }) => {
+      return await models.Message.findByPk(id);
     },
   },
   Message: {
-    user: (parent, { id }, { USERS }) => {
-      return USERS[parent.userId];
+    user: async (parent, args, { models }) => {
+      return await models.Users.findByPk(parent.userId);
     },
   },
 
   Mutation: {
-    createMessage: (parent, { text }, { me, MESSAGES, USERS }) => {
-      const id = uuid.v4();
-      const message = {
-        id,
+    createMessage: async (parent, { text }, { me, models }) => {
+      // const id = uuid.v4();
+      // const message = {
+      //   id,
+      //   text,
+      //   userId: me.id,
+      // };
+      // models.messages[id] = message;
+      // models.users[me.id].messageId.push(id);
+      // return message;
+      return await models.Message.create({
         text,
         userId: me.id,
-      };
-      MESSAGES[id] = message;
-      USERS[me.id].messageId.push(id);
-      return message;
+      });
     },
 
     // deleteMessage: (parent, { id }, { me }) => {
@@ -38,24 +42,34 @@ module.exports = {
     //   return false;
     // },
 
-    deleteMessage: (parent, { id }, { me, MESSAGES }) => {
-      const { [id]: message, ...otherMessages } = MESSAGES;
-      if (!message) {
-        return false;
-      }
-      MESSAGES = otherMessages;
-      return otherMessages;
+    deleteMessage: async (parent, { id }, { me, models }) => {
+      return await models.Message.destroy({
+        where: { id },
+      });
+      // const { [id]: message, ...otherMessages } = models.messages;
+      // if (!message) {
+      //   return false;
+      // }
+      // models.messages = otherMessages;
+      // return otherMessages;
     },
 
-    updateMessage: (parent, { id, text }, { me, MESSAGES }) => {
-      const message = {
-        id,
-        text,
-        userId: me.id,
-      };
-
-      MESSAGES[id] = message;
-      return message;
+    updateMessage: async (parent, { id, text }, { me, models }, info) => {
+      await models.Message.update(
+        {
+          text,
+          userId: me.id,
+        },
+        { where: { id } }
+      );
+      return await models.Message.findByPk(id);
+      // const message = {
+      //   id,
+      //   text,
+      //   userId: me.id,
+      // };
+      // models.messages[id] = message;
+      // return message;
     },
   },
 };
