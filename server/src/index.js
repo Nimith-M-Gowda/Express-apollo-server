@@ -25,6 +25,7 @@ const { sequelize, models } = require("./models");
   server.applyMiddleware({ app, path: "/graphql" });
 
   const eraseDatabaseOnSync = false;
+  //First time its true and once the data is entered on db then set to false
   sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
     if (eraseDatabaseOnSync) {
       createUsersWithMessages();
