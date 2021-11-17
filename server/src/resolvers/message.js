@@ -26,10 +26,14 @@ module.exports = {
       // models.messages[id] = message;
       // models.users[me.id].messageId.push(id);
       // return message;
-      return await models.Message.create({
-        text,
-        userId: me.id,
-      });
+      try {
+        return await models.Message.create({
+          text,
+          userId: me.id,
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
     },
 
     // deleteMessage: (parent, { id }, { me }) => {

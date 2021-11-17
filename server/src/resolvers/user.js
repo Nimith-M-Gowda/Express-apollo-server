@@ -3,6 +3,9 @@ const uuid = require("uuid");
 module.exports = {
   Query: {
     me: async (parent, args, { me, models }) => {
+      if (!me) {
+        return null;
+      }
       return await models.User.findByPk(me.id);
     },
     user: async (parent, { id }, { models }) => {
