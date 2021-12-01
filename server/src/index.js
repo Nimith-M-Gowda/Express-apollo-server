@@ -45,6 +45,8 @@ const { sequelize, models } = require("./models");
             text: "Published the Road to learn React",
           },
         ],
+        email: "nimithbbz10@gmail.com",
+        password: "password",
       },
       {
         include: [models.Message],
@@ -61,6 +63,8 @@ const { sequelize, models } = require("./models");
             text: "Published a complete ...",
           },
         ],
+        email: "hello@david.com",
+        password: "ddavids",
       },
       {
         include: [models.Message],

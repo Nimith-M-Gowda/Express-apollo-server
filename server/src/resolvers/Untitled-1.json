@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UNI for BFAS",
+  "description": "Transition layer between SMS and BFAS",
+  "type": "object",
+  "properties": {
+    "Organization": {
+      "description": "organization is an entity also known as shelter",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Shelter_Software_System_Vendor_ID": {
+            "description": "Shelter_Software_System_Vendor_ID of an organization",
+            "type": "string"
+          },
+          "Organization_ID": {
+            "description": "id of an organization",
+            "type": "string"
+          },
+          "Organization_Name": {
+            "description": "name of an organization",
+            "type": "string"
+          },
+          "Organization_Branch_Name": {
+            "description": "Branch name of an organization",
+            "type": "string"
+          },
+          "Organization_State": {
+            "description": "State an organization belongs to",
+            "type": "string"
+          },
+          "Organization_Zip_Code": {
+            "description": "Zip code an organization belongs to",
+            "type": "string"
+          }
+        },
+        "required": ["Organization_ID"]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "Animal": {
+      "description": "Animal is an another level entity",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Organization_ID": {
+            "description": "organization_id to which the animal belong to",
+            "type": "string"
+          },
+          "Record_Status": {
+            "description": "organization_id to which the animal belong to",
+            "type": "string"
+          },
+          "Organization_Animal_ID": {
+            "description": "Organization_Animal_ID of an Animal",
+            "type": "string"
+          },
+          "Organization_Animal_Identifier": {
+            "description": "Organization_Animal_Identifier of an Animal",
+            "type": "string"
+          },
+          "Animal_Type": {
+            "description": "Species/type of an Animal",
+            "type": "string"
+          },
+          "Primary_Breed": {
+            "description": "Primary_Breed of an Animal",
+            "type": "string"
+          },
+
+          "Secondary_Breed": {
+            "description": "Secondary_Breed of an Animal",
+            "type": "string"
+          },
+
+          "Date_of_Birth": {
+            "description": "Date_of_Birth of an Animal",
+            "type": "string"
+          },
+
+          "Spay_Status_at_intake": {
+            "description": "Spay_Status_at_intake of an Animal",
+            "type": "string"
+          },
+          "Spay_Status_at_outcome": {
+            "description": "Spay_Status_at_outcome of an Animal",
+            "type": "string"
+          },
+          "Sterilization_Date": {
+            "description": "Sterilization_Date of an Animal",
+            "type": "string"
+          },
+          "Animal_Sex": {
+            "description": "Animal_Sex of an Animal",
+            "type": "string"
+          },
+          "Animal_Size": {
+            "description": "Animal_Size of an Animal",
+            "type": "string"
+          },
+          "Last_Animal_Weight": {
+            "description": "Last_Animal_Weight of an Animal",
+            "type": "string"
+          },
+          "Primary_Color": {
+            "description": "Primary_Color of an Animal",
+            "type": "string"
+          },
+          "Secondary_Color": {
+            "description": "Secondary_Color of an Animal",
+            "type": "string"
+          },
+          "Color_Pattern": {
+            "description": "Color_Pattern of an Animal",
+            "type": "string"
+          },
+
+          "Microchip_Number": {
+            "description": "Microchip_Number of an Animal",
+            "type": "string"
+          },
+
+          "Microchip_Issue_Date": {
+            "description": "Microchip_Issue_Date of an Animal",
+            "type": "string"
+          },
+          "Rabies_Tag_Number": {
+            "description": "Rabies_Tag_Number of an Animal",
+            "type": "string"
+          },
+          "Rabies_Tag_Details": {
+            "description": "Rabies_Tag_Details of an Animal",
+            "type": "string"
+          },
+          "Animal_Intake_Date": {
+            "description": "Animal_Intake_Date of an Animal",
+            "type": "string"
+          },
+          "Animal_Intake_Type": {
+            "description": "Animal_Intake_Type of an Animal",
+            "type": "string"
+          },
+          "Animal_Intake_Subtype": {
+            "description": "Animal_Intake_Subtype of an Animal",
+            "type": "string"
+          },
+          "Animal_Intake_Reason": {
+            "description": "Animal_Intake_Reason of an Animal",
+            "type": "string"
+          },
+          "Animal_Intake_Zip_Code": {
+            "description": "Animal_Intake_Zip_Code of an Animal",
+            "type": "string"
+          },
+          "Animal_Location": {
+            "description": "Animal_Location of an Animal",
+            "type": "string"
+          },
+          "Animal_Condition": {
+            "description": "Animal_Condition of an Animal",
+            "type": "string"
+          },
+          "Vaccination_Date": {
+            "description": "Vaccination_Date of an Animal",
+            "type": "string"
+          },
+          "Vaccine_Type": {
+            "description": "Vaccine_Type of an Animal",
+            "type": "string"
+          },
+          "Rabies_Vaccination_Date": {
+            "description": "Rabies_Vaccination_Date of an Animal",
+            "type": "string"
+          },
+          "Rabies_Vaccination_Details": {
+            "description": "Rabies_Vaccination_Details of an Animal",
+            "type": "string"
+          },
+          "Animal_Outcome_Date": {
+            "description": "Animal_Outcome_Date of an Animal",
+            "type": "string"
+          },
+          "Animal_Outcome_Type": {
+            "description": "Animal_Outcome_Type of an Animal",
+            "type": "string"
+          },
+          "Animal_Outcome_Subtype": {
+            "description": "Animal_Outcome_Subtype of an Animal",
+            "type": "string"
+          },
+          "Animal_Outcome_Reason": {
+            "description": "Animal_Outcome_Reason of an Animal",
+            "type": "string"
+          },
+          "Animal_Outcome_Zip_Code": {
+            "description": "Animal_Outcome_Zip_Code of an Animal",
+            "type": "string"
+          },
+          "Date_Created": {
+            "description": "Date_Created of an Animal",
+            "type": "string"
+          },
+          "Date_Modified": {
+            "description": "Date_Modified of an Animal",
+            "type": "string"
+          },
+          "Node_Created": {
+            "description": "Node_Created of an Animal",
+            "type": "string"
+          },
+          "Node_Modified": {
+            "description": "Node_Modified of an Animal",
+            "type": "string"
+          },
+          "Extras": {
+            "description": "Extras of an Animal",
+            "type": "string"
+          }
+        },
+        "required": ["Organization_Animal_ID"]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  }
+}

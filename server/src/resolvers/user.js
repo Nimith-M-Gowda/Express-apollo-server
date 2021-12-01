@@ -1,5 +1,10 @@
 const uuid = require("uuid");
+const jwt = require("jsonwebtoken");
 
+const createToken = async (user) => {
+  const { id, username, email } = user;
+  return await jwt.sign({ id, username, email });
+};
 module.exports = {
   Query: {
     me: async (parent, args, { me, models }) => {
@@ -25,10 +30,20 @@ module.exports = {
       });
       // return Object.values(messages).filter(
       //   (eachmessage) => eachmessage.userId === parent.id
-      // );
+      // );x``
     },
   },
+  Mutation: {
+    signUp: async (parent, { username, email, password }, { models }) => {
+      const user = await models.User.create({
+        username,
+        email,
+        password,
+      });
 
+      return { token: createToken(user) };
+    },
+  },
   // User: {
   //   username: (parent) => {
   //     parent.username = `${parent.username}+rock`;
